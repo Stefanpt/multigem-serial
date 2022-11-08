@@ -8,6 +8,7 @@ const helmet = require("helmet")
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
+const jwt = require('jsonwebtoken');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
