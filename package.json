@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development nodemon ./bin/www",
+    "dev": "NODE_ENV=development pm2 start ./bin/www --watch",
     "start": "NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cookie-parser": "~1.4.4",
@@ -22,7 +23,8 @@
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.1",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "web3": "^1.7.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
