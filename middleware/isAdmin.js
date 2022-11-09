@@ -12,7 +12,7 @@ function isAdmin(req, res, next) {
         const decodedToken = jwt.verify(token,  process.env.TOKEN_SECRET);
 
         if (decodedToken.user.role !== "admin") {
-            res.status(404).json({
+            return res.status(404).json({
               message: "User Not Admin",
               error: true
             });

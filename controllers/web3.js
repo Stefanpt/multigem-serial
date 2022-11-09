@@ -91,7 +91,17 @@ async function claimNft(req, res) {
 
 }
 
+async function getClaims(req, res) {
+  
+    const claims = await Claim.find({});
+    res.json({
+      claims
+    });
+    
+}
+
 module.exports = {
   claimNft,
-  base
+  base,
+  getClaims
 };

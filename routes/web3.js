@@ -32,6 +32,6 @@ claimOnceRouter.get("/claim",[
 
 ], web3Controller.claimNft);
 
-
+router.get("/getClaims", web3Controller.getClaims)
 
 module.exports = router;
