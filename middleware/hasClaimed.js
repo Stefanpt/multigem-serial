@@ -6,11 +6,11 @@ const Claim = require("../models/claim.js");
 async function hasClaimed(req, res, next) {
 
     const claimed = await Claim.findOne({
-        address: req.body.account
+        address: req.query.account
     });
 
     if(claimed) {
-        return res.status(404).json({
+        return res.status(200).json({
             message: "Address already claimed",
             error: true
         });

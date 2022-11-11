@@ -26,10 +26,14 @@ async function claimNft(req, res) {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    return res.status(422).jsonp(errors.array());
+    return res.status(200).json({
+      message: "Validation errors",
+      error: true,
+      errors: errors.array()
+  });
   }
 
-  const { account } = req.body;
+  const { account } = req.query;
 
   let tokenId;
 
@@ -83,9 +87,12 @@ async function claimNft(req, res) {
         }
       })
 
-      return res.status(401).json({
-        error: error.message
+      return res.status(200).json({
+        message: "There was a problem minting",
+        error: true,
+        errors: error.message
       });
+      
 
   });
 
