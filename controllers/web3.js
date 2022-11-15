@@ -30,7 +30,7 @@ async function claimNft(req, res) {
       message: "Validation errors",
       error: true,
       errors: errors.array()
-  });
+    });
   }
 
   const { account } = req.query;

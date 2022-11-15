@@ -1,0 +1,35 @@
+// Middleware chaining can be done like this, almost infintely
+app.get("/", function(req, res, next){
+  //middleware 1
+  req.middlewares = ["middleware1"];
+  next()
+},
+function(req, res, next){
+  //middleware 2
+  req.middlewares.push("middleware2")
+  next()
+},
+function(req, res, next){
+  //middleware 3
+  req.middlewares.push("middleware3")
+  res.json(req.middlewares);
+})
+//////////////////
+
+OR
+
+const middleware1 = (req, res, next)=>{
+    //execute some code
+    next()  // pass execution to the next middleware
+}
+
+const middleware2 = (req, res, next)=>{
+//execute some code
+}
+
+app.get("/", middleware1, middleware2);
+
+//WITH EXPRESS-KUN
+const protectedRouter = withMiddleware(router, authMiddleware); 
+// also support array of middleware ex: [authMiddleware, myMiddleware2]
+

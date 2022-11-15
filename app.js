@@ -13,6 +13,8 @@ const jwt = require('jsonwebtoken');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var web3Router = require('./routes/web3');
+var qrRouter = require('./routes/qr');
+var campaignRouter = require('./routes/campaign');
 
 var app = express();
 app.use(helmet())
@@ -47,6 +49,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/web3', web3Router);
+app.use('/qr', qrRouter);
+app.use('/campaign', campaignRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
