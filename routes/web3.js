@@ -6,6 +6,12 @@ const web3Controller = require('../controllers/web3.js');
 const { isAdmin } = require('../middleware/isAdmin')
 const { hasClaimed } = require('../middleware/hasClaimed')
 const { isMobile } = require('../middleware/isMobile')
+const { catchValidationError } = require('../middleware/validationError')
+const { 
+    isOpen,
+    validSupply,
+    validCampaign 
+} = require('../middleware/campaign_middleware')
 const router = Router();
 const { check, validationResult } = require('express-validator');
 const web3 = require('web3');
@@ -34,8 +40,7 @@ const apiLimiter = rateLimit({
 
     protectedRouter.get("/", web3Controller.base);
 
-    claimOnceRouter.get("/claim",[
-
+    router.get("/claim",[
         check("account")
         .custom(value => {
             const accountCheck = web3.utils.isAddress(value);
@@ -44,7 +49,10 @@ const apiLimiter = rateLimit({
             }
             return true;
         }),
-
+        catchValidationError,
+        validCampaign,
+        validSupply,
+        isOpen
     ], web3Controller.claimNft);
 
     router.get("/getClaims", web3Controller.getClaims)

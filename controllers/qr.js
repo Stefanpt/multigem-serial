@@ -21,7 +21,11 @@ async function claim(req, res) {
         // Check if the campaign has minted out
         if(campaign_result.supply > 0) {
 
-            return res.redirect('http://localhost:3001/');
+            const frontendUrl = new URL('http://localhost:3001/');
+
+            frontendUrl.searchParams.append("campaign", campaign);
+
+            return res.redirect(frontendUrl.href);
             // res.render('index', { title: 'Whoop', message: "There be more booty here"})
 
         } else {

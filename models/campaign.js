@@ -14,6 +14,9 @@ const CampaignSchema = new mongoose.Schema({
   supply: {
     type: Number,
     required: true,
+  },
+  tokenIds: {
+    type: Array
   }
 });
 

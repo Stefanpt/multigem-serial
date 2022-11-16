@@ -5,6 +5,7 @@ const Web3 = require('web3');
 const Provider = require('@truffle/hdwallet-provider');
 const contract = require('../web3/contract.json');
 const Claim = require("../models/claim.js");
+const Campaign = require("../models/campaign.js");
 
 
 const contractAddress =  process.env.CONTRACT_ADDRESS
@@ -15,25 +16,19 @@ const adminWalletAddress = process.env.ADMIN_WALLET_ADDRESS
 
 async function base(req, res) {
 
+  const { account } = req.params;
+
   res.json({
-    message: "web3 router"
+    message: account
   });
 
 }
 
+// TODO: 
+//      check which tokenIDs are still held by proxy wallet
 async function claimNft(req, res) {
 
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.status(200).json({
-      message: "Validation errors",
-      error: true,
-      errors: errors.array()
-    });
-  }
-
-  const { account } = req.query;
+  const { account, campaign } = req.query;
 
   let tokenId;
 
@@ -48,26 +43,44 @@ async function claimNft(req, res) {
   myContract.methods.mintForAddress(1, account).send({from: adminWalletAddress})
   .then(function(receipt){
 
-      tokenId = receipt.events.Transfer.returnValues.tokenId
-      
-      const newClaim = new Claim({
-        tokenId: tokenId,
-        time: new Date(),
-        address: account
-      })
+    tokenId = receipt.events.Transfer.returnValues.tokenId
     
-      newClaim.save(function(error, newItem) {
+    const newClaim = new Claim({
+      tokenId: tokenId,
+      time: new Date(),
+      address: account
+    })
+  
+    newClaim.save(function(error, newItem) {
+      if (error) {
+        console.log("failed to log claim", newClaim)
+      } else {
+        console.log("claim successfully logged")
+      }
+    })
+    
+    Campaign.findOne({name: campaign}).exec(function(error, campaign) {
+
+      campaign.supply = campaign.supply - 1
+
+      if(campaign.supply == 0){
+        campaign.isOpen = false
+      }
+
+      campaign.save(function(error) {
         if (error) {
-          console.log("failed to log claim", newClaim)
+          console.log("Failed to update supply", error)
         } else {
-          console.log("claim successfully logged")
+          console.log("Successfully updated supply")
         }
       })
+      
+    })
 
-      return res.status(200).json({
-        message: "Successfully Minted",
-        newTokenId: tokenId
-      });
+    return res.status(200).json({
+      message: "Successfully Minted",
+      newTokenId: tokenId
+    });
 
   })
   .catch(function(error){

@@ -31,7 +31,7 @@ async function create(req, res) {
 
 async function getAll(req, res) {
 
-  const campaigns = await Campaign.find({})
+  Campaign.find({})
   .then(data => {
     res.send(data);
   })
