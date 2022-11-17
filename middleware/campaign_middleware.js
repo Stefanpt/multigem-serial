@@ -25,7 +25,6 @@ async function validSupply(req, res, next) {
     const campaign = await Campaign.findOne({
         name: req.query.campaign
     });
-    console.log(campaign);
 
     if(campaign.supply == 0) {
         return res.status(200).json({

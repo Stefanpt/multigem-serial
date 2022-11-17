@@ -61,8 +61,10 @@ async function claimNft(req, res) {
     
     Campaign.findOne({name: campaign}).exec(function(error, campaign) {
 
+      // Reduce supply by one in the DB
       campaign.supply = campaign.supply - 1
 
+      // Close campaign if supply reches 0 with THIS request
       if(campaign.supply == 0){
         campaign.isOpen = false
       }
