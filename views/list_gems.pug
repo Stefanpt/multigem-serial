@@ -2,24 +2,24 @@ extends layout
 
 block content
     h1= title
-    table.table.table-striped
-        thead.thead-dark
+    table.table.table-striped.table-sm
+        thead.table-dark
             tr
-                th id
-                th name
-                th origin
-                th weight
-                th clarity
-                th cut
-                th measurement
-                th color
-                th treatment
-                th price
-                th serial
-                th delete
-                th update
+                th(scope="col") id
+                th(scope="col") name
+                th(scope="col") origin
+                th(scope="col") weight
+                th(scope="col") clarity
+                th(scope="col") cut
+                th(scope="col") measurement
+                th(scope="col") color
+                th(scope="col") treatment
+                th(scope="col") price
+                th(scope="col") serial
+                th(scope="col") delete
+                th(scope="col") update
             tr
-        tbody
+        tbody.table-group-divider
         for g in gems
             tr
                 td= g._id

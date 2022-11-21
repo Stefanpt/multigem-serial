@@ -49,7 +49,7 @@ async function create(req, res) {
 
 async function index(req, res) {
 
-  res.render('index', { title: 'Welcome to Multigem!'})
+  res.render('home', {})
 
 }
 
