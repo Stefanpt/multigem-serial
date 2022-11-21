@@ -7,7 +7,6 @@
     "start": "NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
-    "@truffle/hdwallet-provider": "^2.1.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cookie-parser": "~1.4.4",
@@ -25,8 +24,7 @@
     "mongoose": "^6.7.1",
     "morgan": "~1.9.1",
     "pug": "^3.0.2",
-    "ua-parser-js": "^1.0.32",
-    "web3": "^1.7.5"
+    "ua-parser-js": "^1.0.32"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
