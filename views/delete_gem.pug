@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    h1= title
+    div.list-group
+      div.list-group-item
+          h5.text-uppercase ID
+          p.p-5.text-center #{gem._id}
+      div.list-group-item
+          h5.text-uppercase Name
+          p.p-5.text-center #{gem.name}
+      div.list-group-item
+          h5.text-uppercase Origin
+          p.p-5.text-center #{gem.origin}
+      div.list-group-item
+          h5.text-uppercase Weight
+          p.p-5.text-center #{gem.weight}
+      div.list-group-item
+          h5.text-uppercase Clarity
+          p.p-5.text-center #{gem.clarity}
+      div.list-group-item
+          h5.text-uppercase Cut
+          p.p-5.text-center #{gem.cut}
+      div.list-group-item
+          h5.text-uppercase Measurement
+          p.p-5.text-center #{gem.measurement}
+      div.list-group-item
+          h5.text-uppercase Color
+          p.p-5.text-center #{gem.color}
+      div.list-group-item
+          h5.text-uppercase Treatment
+          p.p-5.text-center #{gem.treatment}
+      div.list-group-item
+          h5.text-uppercase Price
+          p.p-5.text-center #{gem.price}
+      div.list-group-item
+          h5.text-uppercase serial
+          p.p-5.text-center #{gem.serial}
+    form(action="http://localhost:3100/gems/delete/confirm/" method="POST")
+      input.form-control(type="hidden" name="id" value=gem._id)
+      input.btn.btn-primary(value='Yes, Im sure', type='submit')

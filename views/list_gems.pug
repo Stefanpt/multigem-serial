@@ -1,0 +1,40 @@
+extends layout
+
+block content
+    h1= title
+    table.table.table-striped
+        thead.thead-dark
+            tr
+                th id
+                th name
+                th origin
+                th weight
+                th clarity
+                th cut
+                th measurement
+                th color
+                th treatment
+                th price
+                th serial
+                th delete
+                th update
+            tr
+        tbody
+        for g in gems
+            tr
+                td= g._id
+                td= g.name
+                td= g.origin
+                td= g.weight
+                td= g.clarity
+                td= g.cut
+                td= g.measurement
+                td= g.color
+                td= g.treatment
+                td= g.price
+                td= g.serial
+                td
+                    a(href="/gems/delete/" + g._id) Delete
+                td
+                    a(href="/gems/update/" + g._id) Update
+            tr

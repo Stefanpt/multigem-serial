@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    h1= title
+    form(action="http://localhost:3100/gems/update/save" method="POST")
+      div 
+        label.form-label Name:
+        input.form-control(type="text" name="name" value= gem.name)
+      div 
+        label.form-label Origin:
+        input.form-control(type="text" name="origin" value= gem.origin)
+      div 
+        label.form-label Weight:
+        input.form-control(type="text" name="weight" value= gem.weight)
+      div 
+        label.form-label Clarity:
+        input.form-control(type="text" name="clarity" value= gem.clarity)
+      div 
+        label.form-label Cut:
+        input.form-control(type="text" name="cut" value= gem.cut)
+      div 
+        label.form-label Measurement:
+        input.form-control(type="text" name="measurement" value= gem.measurement)
+      div 
+        label.form-label Color:
+        input.form-control(type="text" name="color" value= gem.color)
+      div 
+        label.form-label Treatment:
+        input.form-control(type="text" name="treatment" value= gem.treatment)
+      div
+        label.form-label Price:
+        input.form-control(type="text" name="price" value= gem.price)
+      input.form-control(type="hidden" name="serial" value= gem.serial)
+      div.mt-3
+        input.btn.btn-primary(value='Submit', type='submit')
