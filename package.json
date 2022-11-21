@@ -7,6 +7,9 @@
     "dev": "NODE_ENV=development pm2 start ./bin/www --watch",
     "start": "NODE_ENV=production node ./bin/www.js"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
