@@ -1,10 +1,11 @@
 {
-  "name": "js-api",
-  "version": "0.0.0",
+  "name": "serial_gen",
+  "version": "1.0.0",
+  "description": "Serial number generator for MultiGem",
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development pm2 start ./bin/www --watch",
-    "start": "NODE_ENV=production node ./bin/www"
+    "start": "NODE_ENV=production node ./bin/www.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
